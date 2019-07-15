@@ -2,10 +2,17 @@ package com.sparshGupta;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TennisCoach implements Coach {
+
+    @Value("${coach.name}")
+    private String name;
+
+    @Value("${coach.email}")
+    private String email;
 
     private FortuneService fortuneService;
 
@@ -21,5 +28,13 @@ public class TennisCoach implements Coach {
     @Override
     public String getDailyFortune() {
         return fortuneService.getDailyFortune();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
