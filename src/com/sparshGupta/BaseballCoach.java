@@ -7,15 +7,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class BaseballCoach implements Coach {
 
-    @Autowired
-    @Qualifier("happyFortuneService")
+//    @Autowired
+//    @Qualifier("happyFortuneService")
     private FortuneService fortuneService;
 
-    //constructor for DI
-//    @Autowired
-//    public BaseballCoach(FortuneService fortuneService) {
-//        this.fortuneService = fortuneService;
-//    }
+//    constructor for DI
+    @Autowired
+    public BaseballCoach(@Qualifier("sadFortuneService") FortuneService fortuneService) {
+        this.fortuneService = fortuneService;
+    }
 
 //    //setter method for DI
 //    @Autowired
