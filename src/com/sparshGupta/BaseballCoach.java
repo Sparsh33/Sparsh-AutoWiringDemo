@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 @Component
 public class BaseballCoach implements Coach {
 
@@ -14,6 +17,7 @@ public class BaseballCoach implements Coach {
 //    constructor for DI
     @Autowired
     public BaseballCoach(@Qualifier("sadFortuneService") FortuneService fortuneService) {
+        System.out.println("Inside Baseball Coach Constructor!");
         this.fortuneService = fortuneService;
     }
 
@@ -37,5 +41,15 @@ public class BaseballCoach implements Coach {
     @Override
     public String getDailyFortune() {
         return fortuneService.getDailyFortune();
+    }
+
+    @PostConstruct
+    private void InitializeMyBean() {
+        System.out.println("Inside bean Initialize method!");
+    }
+
+    @PreDestroy
+    private void DestroyMyBean() {
+        System.out.println("Inside bean destroy method!");
     }
 }
